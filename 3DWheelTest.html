@@ -1,23 +1,148 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head>    
+		<title>RoundSlider - A sample demo</title>
+		<script src="slider/demo/scripts/jquery-1.11.3.min.js"></script>
+		<link href="slider/dist/roundslider.min.css" rel="stylesheet" />
+		<script src="slider/dist/roundslider.min.js"></script>
         <style>
-            .AppIcon {
-                height: 100px;
-                width: 100px;
-                background-color: steelblue;
-                display: inline-block;
-                -webkit-transition-property: -webkit-transform;
-                -webkit-transition-duration: 1.2s;
-            }
-            .AppIcon:hover {
-                -webkit-transform:translateX(15%) rotateY(45deg);
-            }
+			body{
+				background-color: black;
+			}
+			#stage {
+			  margin: 2em auto 1em 50%;
+			  height: 140px;
+			  -webkit-perspective: 1200px;
+			  -webkit-perspective-origin: 0 50%;
+			}
+
+			#rotator a {
+			  position: absolute;
+			  left: -81px;
+			}
+			#rotator a img {
+			  padding: 10px;
+			  border: 1px solid #ccc;
+			  background: #fff;
+			  -webkit-backface-visibility: hidden;
+			}
+
+			#rotator a:nth-of-type(1) img {
+			  -webkit-transform: rotateY(-90deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(2) img {
+			  -webkit-transform: rotateY(-60deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(3) img {
+			  -webkit-transform: rotateY(-30deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(4) img {
+			  -webkit-transform: translateZ(300px);
+			  background: #000;
+			}
+			#rotator a:nth-of-type(5) img {
+			  -webkit-transform: rotateY(30deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(6) img {
+			  -webkit-transform: rotateY(60deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(n+7) { display: none; }
+
+			@-webkit-keyframes rotator {
+			  from { -webkit-transform: rotateY(0deg);  }
+			  to   { -webkit-transform: rotateY(30deg); }
+			}
+
+			#rotator {
+			  -webkit-transform-origin: 0 0;
+			  -webkit-transform-style: preserve-3d;
+			  -webkit-animation-timing-function: cubic-bezier(1, 0.2, 0.2, 1);
+			  -webkit-animation-duration: 1s;
+			  -webkit-animation-delay: 1s;
+			}
+			#rotator:hover {
+			  -webkit-animation-play-state: paused;
+			}
+			.Slider {
+				vertical-align: center;	
+				align: center;
+				margin-left: 41%;
+			}
+			h1 span {
+				font-size: 0.6em;
+			}
+			.container {
+			  background-color: #000000;
+			}
         </style>
     </head>
     <body>
-        <div class="AppIcon">
-            <p>Lorum ipsum</p>
-        </div>
+		<div id="stage">
+		<div id="rotator" style="-webkit-animation-name: rotator;">
+		<a href="icons\audio.jpg"><img src="icons\audio.jpg" width="140"></a>
+		<a href="icons\chrome.png"><img src="icons\chrome.png" width="140"></a>
+		<a href="icons\find.jpg"><img src="icons\find.jpg" width="140"></a>
+		<a href="icons\itunes.png"><img src="icons\itunes.png" width="140"></a>
+		<a href="icons\powerpoint.png"><img src="icons\powerpoint.png" width="140"></a>
+		<a href="icons\settings.png"><img src="icons\settings.png" width="140"></a>
+		<a href="icons\spotify.png"><img src="icons\spotify.png" width="140"></a>
+		<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
+		</div>
+		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<div class="Slider">			
+			<div class="types">
+				<div class="container">
+					<div class="control">
+						<div id="type"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+			<script type="text/javascript">
+                document.addEventListener("DOMContentLoaded", function() {
+				var rotateComplete = function() {
+					target.style.webkitAnimationName = "";
+					target.insertBefore(arr[arr.length-1], arr[0]);
+					setTimeout(function(el) {
+					el.style.webkitAnimationName = "rotator";
+					}, 0, target);
+				  };
+
+				  var target = document.getElementById("rotator");
+				  var arr = target.getElementsByTagName("a");
+
+				  target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+
+				}, false);
+				var rotateComplete = function() {
+				  with(target.style) {
+					webkitAnimationName = MozAnimationName = msAnimationName = "";
+				  }
+				  target.insertBefore(arr[arr.length-1], arr[0]);
+				  setTimeout(function(el) {
+					with(el.style) {
+					  webkitAnimationName = MozAnimationName = msAnimationName = "rotator";
+					}
+				  }, 0, target);
+				};
+
+				var target = document.getElementById("rotator");
+				var arr = target.getElementsByTagName("a");
+				
+				$(document).ready(function () {
+					$("#type").roundSlider({
+						value: 5,
+					});
+				});
+				
+				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+				target.addEventListener("animationend", rotateComplete, false);
+				target.addEventListener("MSAnimationEnd", rotateComplete, false);
+			</script>
+		</div>
     </body>
 </html>
