@@ -5,4 +5,11 @@ Version 0.0.1 -
 	+ Created Project
 	+ Added version history
 
+-----------------
+
+Version 0.0.1a -
+
+	+ Added app framework to build the actual launcher on
+	
+	- Removed test.txt as it no longer serves a purpose: the test was successful.
 -------------------------------------
