@@ -137,11 +137,14 @@
 					$("#type").roundSlider({
 						value: 5,
 					});
+					var obj = $('#control').data("roundSlider");
+						change: function (e) {
+							alert(e.value);
+							}
 				});
-				$('#type').on('change', function(){
-				valuePulled = $(this).val();
-				alert(valuePulled)
-				});
+
+				
+				
 				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
 				target.addEventListener("animationend", rotateComplete, false);
 				target.addEventListener("MSAnimationEnd", rotateComplete, false);
