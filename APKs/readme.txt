@@ -1,1 +1,1 @@
-Build 1: app-debug.apk
+Build 2 - Settings

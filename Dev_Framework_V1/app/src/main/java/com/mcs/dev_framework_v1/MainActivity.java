@@ -16,8 +16,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 public class MainActivity extends AppCompatActivity {
 
 
-    private String package_name = "com.android.calculator2";
-    private String class_name = "com.android.calculator2.Calculator";
+    private String package_name = "com.android.settings";
+    private String class_name = "com.android.settings.Settings";
 
 
     /**
