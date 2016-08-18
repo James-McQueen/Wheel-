@@ -138,10 +138,16 @@
 						value: 5,
 					});
 				});
-				
+				$('#type').on('change', function(){
+				valuePulled = $(this).val();
+				alert(valuePulled)
+				});
 				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
 				target.addEventListener("animationend", rotateComplete, false);
 				target.addEventListener("MSAnimationEnd", rotateComplete, false);
+				
+				
+				
 			</script>
 		</div>
     </body>

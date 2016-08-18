@@ -70,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
+        public int getValue() {
+            return 5;
 
+        }
     }
 
 
