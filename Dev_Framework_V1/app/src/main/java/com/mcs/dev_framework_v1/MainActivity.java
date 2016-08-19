@@ -23,6 +23,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 
@@ -91,27 +92,44 @@ public class MainActivity extends AppCompatActivity {
     public class webViewInterface {
 // allows for passing variable values to javascript int he webview
 
-
-
-
         Context mContext;
         webViewInterface(Context c) {
             mContext = c;
         }
         @JavascriptInterface
-        public int getAppQuantity() {
-            int numberOfNonSystemApps = 0;
+        public List<ApplicationInfo> getUserInstalledApplications(Context context) {
+            // Get installed applications
+            final PackageManager packageManager = context.getPackageManager();
+            List<ApplicationInfo> installedApplications =
+                    packageManager.getInstalledApplications(PackageManager.GET_META_DATA);
 
-            List<ApplicationInfo> appList = getPackageManager().getInstalledApplications(0);
-            for(ApplicationInfo info : appList) {
-                if((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
-                    numberOfNonSystemApps++;
+            // Remove system apps
+            Iterator<ApplicationInfo> it = installedApplications.iterator();
+            while (it.hasNext()) {
+                ApplicationInfo appInfo = it.next();
+                if ((appInfo.flags & ApplicationInfo.FLAG_SYSTEM) != 0) {
+                    it.remove();
                 }
             }
-           // int numberOfInstalledApps = getPackageManager().getInstalledApplications(0).size();
 
-            return numberOfNonSystemApps;
+            // Return installed applications
+            return installedApplications;
         }
+
+//        public int getAppQuantity() {
+//            int numberOfNonSystemApps = 0;
+//
+//            List<ApplicationInfo> appList = getPackageManager().getInstalledApplications(0);
+//            for(ApplicationInfo info : appList) {
+//                if((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+//                    numberOfNonSystemApps++;
+//                }
+//            }
+//           // int numberOfInstalledApps = getPackageManager().getInstalledApplications(0).size();
+//
+//            return numberOfNonSystemApps;
+//        }
+
 
         @JavascriptInterface
         public void launchCaller() {

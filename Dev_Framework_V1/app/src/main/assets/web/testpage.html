@@ -17,42 +17,53 @@
 	</script>
 </div>
 <div id="loadApps">
-	<button id="id66669">Click Me</button>
+	<button id="ShowApps" onClick="showAppList()">Show Apps</button>
 	<script type="text/javascript">
-	function f1 (evt) {
 
+
+//var numberOfApps = null;
+var listOfApps = null;
+ function getFromAndroid(){
+	listOfApps = MainActivityInterface.getUserInstalledApplications();
+ }
+ getFromAndroid();
+ function showAppList(){
  // create node
- var newNode = document.createElement("p");
- var testVar = null;
- var testSum = 12;
- 
-var numberOfApps = null;
- 
+ var appP = document.createElement("p");
+ var t = document.createTextNode(listOfApps);
+ appP.appendChild(t);                                          
+ document.body.appendChild(appP);   
+}
+// function getFromAndroid(){
+//	numberOfApps = MainActivityInterface.getAppQuantity();
+// }
+ //getFromAndroid();
+
+<!-- var myVar = null;
+  // function getFromAndroid() {
+  //     myVar = MainActivityInterface.getFromAndroid();
+  //      alert(myVar);
+  //  } -->
+//};
+	</script>
+</div>
+
+<!-- <button onclick="generateAppButtons()">Try it</button>
+
+<script>
  function getFromAndroid(){
 	numberOfApps = MainActivityInterface.getAppQuantity();
  }
  getFromAndroid();
- 
-
- 
- newNode.appendChild(document.createTextNode("There are "+ numberOfApps +" apps on this phone"));
-
- // reference node
- var refNode = evt.target; // the HTML element of the event
-
- // insert after
- refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
+function generateAppButtons() {
+for (i = 0; i < numberOfApps; i++) {
+    var btn = document.createElement("BUTTON");
+    var t = document.createTextNode("App number " + i);
+    btn.appendChild(t);
+    document.body.appendChild(btn);
 }
-
-document.getElementById("id66669").addEventListener("click", f1 , false);
-
-	
-	//	var myVar = null;
-   // function getFromAndroid() {
-  //      myVar = MainActivityInterface.getFromAndroid();
-   //     alert(myVar);
-  //  }
-	</script>
+}
+</script> -->
 </head>
 <body>
 
