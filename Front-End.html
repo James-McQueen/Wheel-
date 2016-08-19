@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+	<head>    
+		<title>RoundSlider - A sample demo</title>
+		<script src="slider/demo/scripts/jquery-1.11.3.min.js"></script>
+		<link href="slider/dist/roundslider.min.css" rel="stylesheet" />
+		<script src="slider/dist/roundslider.min.js"></script>
+		<style>
+			body{
+				background-color: black;
+			}
+			#stage {
+			  margin: 2em auto 1em 50%;
+			  height: 140px;
+			  -webkit-perspective: 1200px;
+			  -webkit-perspective-origin: 0 50%;
+			}
+
+			#rotator a {
+			  position: absolute;
+			  left: -81px;
+			}
+			#rotator a img {
+			  padding: 10px;
+			  border: 1px solid #ccc;
+			  background: #fff;
+			  -webkit-backface-visibility: hidden;
+			}
+
+			#rotator a:nth-of-type(1) img {
+			  -webkit-transform: rotateY(90deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(2) img {
+			  -webkit-transform: rotateY(60deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(3) img {
+			  -webkit-transform: rotateY(30deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(4) img {
+			  -webkit-transform: translateZ(300px);
+			  background: #000;
+			}
+			#rotator a:nth-of-type(5) img {
+			  -webkit-transform: rotateY(-30deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(6) img {
+			  -webkit-transform: rotateY(-60deg) translateZ(300px);
+			}
+			#rotator a:nth-of-type(n+7) { display: none; }
+
+			@-webkit-keyframes rotator {
+			  from { -webkit-transform: rotateY(0deg);  }
+			  to   { -webkit-transform: rotateY(-30deg); }
+			}
+
+			#rotator {
+			  -webkit-transform-origin: 0 0;
+			  -webkit-transform-style: preserve-3d;
+			  -webkit-animation-timing-function: cubic-bezier(1, 0.2, 0.2, 1);
+			  -webkit-animation-duration: 1s;
+			  -webkit-animation-delay: 0s;
+			  -webkit-animation-play-state: paused;
+			}
+			#rotator:hover {
+			  -webkit-animation-play-state: paused;
+			}
+			#slider {
+			  position: fixed;
+			  top: 50%;
+			  left: 50%;
+			  /* bring your own prefixes */
+			  transform: translate(-50%, -50%);
+			}
+			h1 span {
+				font-size: 0.6em;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="stage">
+		<div id="rotator" style="-webkit-animation-name: rotator;">
+		<a href="icons\audio.jpg"><img src="icons\audio.jpg" width="140"></a>
+		<a href="icons\chrome.png"><img src="icons\chrome.png" width="140"></a>
+		<a href="icons\find.jpg"><img src="icons\find.jpg" width="140"></a>
+		<a href="icons\itunes.png"><img src="icons\itunes.png" width="140"></a>
+		<a href="icons\powerpoint.png"><img src="icons\powerpoint.png" width="140"></a>
+		<a href="icons\settings.png"><img src="icons\settings.png" width="140"></a>
+		<a href="icons\spotify.png"><img src="icons\spotify.png" width="140"></a>
+		<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
+		</div>
+		</div>
+		<br>
+		<br>
+		<button id="test1">TRY</button>
+		<br>
+		<br>
+		<div id="slider">
+		</div>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+		<div id="div1"></div>
+			<script type="text/javascript">
+				document.addEventListener("DOMContentLoaded", function() {
+				var rotateComplete = function() {
+					target.style.webkitAnimationName = "";
+					target.insertBefore(arr[arr.length-1], arr[0]);
+					setTimeout(function(el) {
+					el.style.webkitAnimationName = "rotator";
+					}, 0, target);
+				  };
+
+				  var target = document.getElementById("rotator");
+				  var arr = target.getElementsByTagName("a");
+
+				  target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+
+				}, false);
+				var rotateComplete = function() {
+				  with(target.style) {
+					webkitAnimationName = MozAnimationName = msAnimationName = "";
+				  }
+				  target.insertBefore(arr[arr.length-1], arr[0]);
+				  setTimeout(function(el) {
+					with(el.style) {
+					  webkitAnimationName = MozAnimationName = msAnimationName = "rotator";
+					}
+				  }, 0, target);
+				};
+				var current = $("#slider")
+				current.roundSlider({
+					value: 5,
+				});
+				var slidervalue = String(current.roundSlider.value);
+				//alert(current.roundSlider.style.value);
+
+				var target = document.getElementById("rotator");
+				var arr = target.getElementsByTagName("a");
+
+				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+				target.addEventListener("animationend", rotateComplete, false);
+				target.addEventListener("MSAnimationEnd", rotateComplete, false);
+				
+				var button1 = document.getElementById("test1");
+				button1.addEventListener("click", function () {
+					rotator.style.webkitAnimationPlayState = "running";
+					setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 1000);
+				} , false);
+				
+			</script>
+		</div>
+	</body>
+</html>
