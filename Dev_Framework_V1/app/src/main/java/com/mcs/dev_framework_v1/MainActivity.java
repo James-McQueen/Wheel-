@@ -100,10 +100,17 @@ public class MainActivity extends AppCompatActivity {
         }
         @JavascriptInterface
         public int getAppQuantity() {
+            int numberOfNonSystemApps = 0;
 
-            int numberOfInstalledApps = getPackageManager().getInstalledApplications(0).size();
+            List<ApplicationInfo> appList = getPackageManager().getInstalledApplications(0);
+            for(ApplicationInfo info : appList) {
+                if((info.flags & ApplicationInfo.FLAG_SYSTEM) == 0) {
+                    numberOfNonSystemApps++;
+                }
+            }
+           // int numberOfInstalledApps = getPackageManager().getInstalledApplications(0).size();
 
-            return numberOfInstalledApps;
+            return numberOfNonSystemApps;
         }
 
         @JavascriptInterface
