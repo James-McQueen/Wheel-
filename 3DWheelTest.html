@@ -59,20 +59,18 @@
 			  -webkit-animation-timing-function: cubic-bezier(1, 0.2, 0.2, 1);
 			  -webkit-animation-duration: 1s;
 			  -webkit-animation-delay: 1s;
+			  -webkit-animation-play-state: paused;
 			}
 			#rotator:hover {
 			  -webkit-animation-play-state: paused;
 			}
-			.Slider {
+			#slider {
 				vertical-align: center;	
 				align: center;
 				margin-left: 41%;
 			}
 			h1 span {
 				font-size: 0.6em;
-			}
-			.container {
-			  background-color: #000000;
 			}
         </style>
     </head>
@@ -91,16 +89,10 @@
 		</div>
 		<br>
 		<br>
+		<button id="test1">TRY</button>
 		<br>
 		<br>
-		<div class="Slider">			
-			<div class="types">
-				<div class="container">
-					<div class="control">
-						<div id="type"></div>
-					</div>
-				</div>
-			</div>
+		<div id="slider">
 		</div>
 			<script type="text/javascript">
                 document.addEventListener("DOMContentLoaded", function() {
@@ -129,27 +121,28 @@
 					}
 				  }, 0, target);
 				};
-
+				$("#slider").roundSlider({
+					value: 5,
+				});
+				
+				/*var obj = $('#slider').data("roundSlider");
+					change: function (e) {
+						alert(e.value);
+					}
+				});*/
+				
 				var target = document.getElementById("rotator");
 				var arr = target.getElementsByTagName("a");
-				
-				$(document).ready(function () {
-					$("#type").roundSlider({
-						value: 5,
-					});
-					var obj = $('#control').data("roundSlider");
-						change: function (e) {
-							alert(e.value);
-							}
-				});
 
-				
-				
 				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
 				target.addEventListener("animationend", rotateComplete, false);
 				target.addEventListener("MSAnimationEnd", rotateComplete, false);
 				
-				
+				var button1 = document.getElementById("test1");
+				button1.addEventListener("click", function () {
+					rotator.style.webkitAnimationPlayState = "running";
+					setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 2000);
+				} , false);
 				
 			</script>
 		</div>
