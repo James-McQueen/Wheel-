@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Dev_Framework_V1</string>
+    <string name="title_activity_apps_list">AppsListActivity</string>
 </resources>

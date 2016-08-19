@@ -58,7 +58,7 @@
 			  -webkit-transform-style: preserve-3d;
 			  -webkit-animation-timing-function: cubic-bezier(1, 0.2, 0.2, 1);
 			  -webkit-animation-duration: 1s;
-			  -webkit-animation-delay: 1s;
+			  -webkit-animation-delay: 0s;
 			  -webkit-animation-play-state: paused;
 			}
 			#rotator:hover {
@@ -125,11 +125,17 @@
 					value: 5,
 				});
 				
-				/*var obj = $('#slider').data("roundSlider");
-					change: function (e) {
-						alert(e.value);
-					}
-				});*/
+				var sliderFunVal = $('#slider').getValue();
+				alert(sliderFunVal);
+				
+				
+				$('#slider').on('change', function(){
+				//rotator.style.webkitAnimationPlayState = "running";
+				//setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 1000);
+				var sliderFunVal = $('#slider').getValue();
+				alert(sliderFunVal);
+				});
+
 				
 				var target = document.getElementById("rotator");
 				var arr = target.getElementsByTagName("a");
@@ -138,11 +144,11 @@
 				target.addEventListener("animationend", rotateComplete, false);
 				target.addEventListener("MSAnimationEnd", rotateComplete, false);
 				
-				var button1 = document.getElementById("test1");
-				button1.addEventListener("click", function () {
-					rotator.style.webkitAnimationPlayState = "running";
-					setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 2000);
-				} , false);
+				//var button1 = document.getElementById("test1");
+				//button1.addEventListener("click", function () {
+			//		rotator.style.webkitAnimationPlayState = "running";
+				//	setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 1000);
+				//} , false);
 				
 			</script>
 		</div>

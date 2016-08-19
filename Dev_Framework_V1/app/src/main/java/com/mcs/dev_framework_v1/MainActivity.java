@@ -1,18 +1,29 @@
 package com.mcs.dev_framework_v1;
 
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 import android.webkit.JavascriptInterface;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -75,15 +86,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+
+
     public class webViewInterface {
 // allows for passing variable values to javascript int he webview
+
+
+
+
         Context mContext;
         webViewInterface(Context c) {
             mContext = c;
         }
         @JavascriptInterface
         public int getAppQuantity() {
-            return 5;
+
+            int numberOfInstalledApps = getPackageManager().getInstalledApplications(0).size();
+
+            return numberOfInstalledApps;
         }
 
         @JavascriptInterface
