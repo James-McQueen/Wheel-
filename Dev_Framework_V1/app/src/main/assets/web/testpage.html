@@ -16,15 +16,46 @@
 
 	</script>
 </div>
-</head>
-<body>
-<script>
-	function getValue() {
-  return MainActivityInterface.getValue();
+<div id="loadApps">
+	<button id="id66669">Click Me</button>
+	<script type="text/javascript">
+	function f1 (evt) {
+
+ // create node
+ var newNode = document.createElement("p");
+ var testVar = null;
+ var testSum = 12;
+ 
+var numberOfApps = null;
+ 
+ function getFromAndroid(){
+	numberOfApps = MainActivityInterface.getAppQuantity();
+ }
+ getFromAndroid();
+ 
+
+ 
+ newNode.appendChild(document.createTextNode("There are "+ numberOfApps +" apps on this phone"));
+
+ // reference node
+ var refNode = evt.target; // the HTML element of the event
+
+ // insert after
+ refNode.parentNode.insertBefore(newNode, refNode.nextSibling);
 }
 
-alert(getValue());
-</script>
+document.getElementById("id66669").addEventListener("click", f1 , false);
+
+	
+	//	var myVar = null;
+   // function getFromAndroid() {
+  //      myVar = MainActivityInterface.getFromAndroid();
+   //     alert(myVar);
+  //  }
+	</script>
+</head>
+<body>
+
 </body>
 
 </html>

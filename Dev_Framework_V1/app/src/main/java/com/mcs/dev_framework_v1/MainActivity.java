@@ -1,6 +1,7 @@
 package com.mcs.dev_framework_v1;
 
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.webkit.JavascriptInterface;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,12 +37,32 @@ public class MainActivity extends AppCompatActivity {
 
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new MyWebViewClient());
-        view.addJavascriptInterface(new webViewInterface(), "MainActivityInterface");
+        view.addJavascriptInterface(new webViewInterface(this), "MainActivityInterface"); // MainActivityInterface is what needs to be called in the javascript when passing a var value.
         String url = "file:///android_asset/web/testpage.html";
         view.loadUrl(url);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.mcs.dev_framework_v1/http/host/path")
+        );
+        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     private class MyWebViewClient extends WebViewClient
@@ -53,10 +75,19 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public class webViewInterface{
+    public class webViewInterface {
+// allows for passing variable values to javascript int he webview
+        Context mContext;
+        webViewInterface(Context c) {
+            mContext = c;
+        }
+        @JavascriptInterface
+        public int getAppQuantity() {
+            return 5;
+        }
 
         @JavascriptInterface
-        public void launchCaller(){
+        public void launchCaller() {
 
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_MAIN);
@@ -70,18 +101,29 @@ public class MainActivity extends AppCompatActivity {
             }
 
         }
-        public int getValue() {
-            return 5;
 
-        }
+
     }
-
-
-
 
     @Override
     public void onStop() {
         super.onStop();
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        Action viewAction = Action.newAction(
+                Action.TYPE_VIEW, // TODO: choose an action type.
+                "Main Page", // TODO: Define a title for the content shown.
+                // TODO: If you have web page content that matches this app activity's content,
+                // make sure this auto-generated web page URL is correct.
+                // Otherwise, set the URL to null.
+                Uri.parse("http://host/path"),
+                // TODO: Make sure this auto-generated app URL is correct.
+                Uri.parse("android-app://com.mcs.dev_framework_v1/http/host/path")
+        );
+        AppIndex.AppIndexApi.end(client, viewAction);
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.disconnect();
     }
 }
 
