@@ -3,11 +3,280 @@
 	<head>    
 		<title>RoundSlider - A sample demo</title>
 		<script src="slider/demo/scripts/jquery-1.11.3.min.js"></script>
-		<link href="slider/dist/roundslider.min.css" rel="stylesheet" />
 		<script src="slider/dist/roundslider.min.js"></script>
 		<style>
 			body{
-				background-color: black;
+				background-color: white;
+			}
+			.rs-control{
+				position:relative;
+				outline:0 none
+			}
+			.rs-container{
+				position:relative
+			}
+			.rs-control *,.rs-control *:before,.rs-control *:after{
+				-webkit-box-sizing:border-box;
+				-moz-box-sizing:border-box;
+				box-sizing:border-box
+			}
+			.rs-animation .rs-transition{
+				-webkit-transition:all .5s linear 0s;
+				-moz-transition:all .5s linear 0s;
+				-o-transition:all .5s linear 0s;
+				transition:all .5s linear 0s
+			}
+			.rs-bar{
+				-webkit-transform-origin:100% 50%;
+				-moz-transform-origin:100% 50%;
+				-ms-transform-origin:100% 50%;
+				-o-transform-origin:100% 50%;
+				transform-origin:100% 50%
+			}
+			.rs-control .rs-split .rs-path,.rs-control .rs-overlay1,.rs-control .rs-overlay2{
+				-webkit-transform-origin:50% 100%;
+				-moz-transform-origin:50% 100%;
+				-ms-transform-origin:50% 100%;
+				-o-transform-origin:50% 100%;
+				transform-origin:50% 100%
+			}
+			.rs-control .rs-overlay{
+				-webkit-transform-origin:100% 100%;
+				-moz-transform-origin:100% 100%;
+				-ms-transform-origin:100% 100%;
+				-o-transform-origin:100% 100%;
+				transform-origin:100% 100%
+			}
+			.rs-control.rs-error{
+				border:1px dotted;
+				text-align:center
+			}
+			.rs-readonly{
+				height:100%;
+				width:100%;
+				top:0;
+				position:absolute;
+				z-index:100
+			}
+			.rs-disabled{
+				opacity:.35
+			}
+			.rs-inner-container{
+				height:100%;
+				width:100%;
+				position:relative;
+				overflow:hidden
+			}
+			.quarter div.rs-block{
+				height:200%;
+				width:200%
+			}
+			.half.top div.rs-block,.half.bottom div.rs-block{
+				height:200%;
+				width:100%
+			}
+			.half.left div.rs-block,.half.right div.rs-block{
+				height:100%;
+				width:200%
+			}
+			.bottom>.rs-inner-container>.rs-block{
+				top:auto;
+				bottom:0
+			}
+			.right .rs-inner-container>.rs-block{
+				right:0
+			}
+			div.rs-block{
+				-webkit-border-radius:100%;
+				border-radius:100%
+			}
+			.rs-block{
+				height:100%;
+				width:100%;
+				display:block;
+				position:absolute;
+				top:0;
+				overflow:hidden;
+				z-index:3
+			}
+			.rs-block .rs-inner{
+				-webkit-border-radius:1000px;
+				border-radius:1000px;
+				display:block;
+				height:100%;
+				width:100%;
+				position:relative
+			}
+			.rs-overlay{
+				width:50%
+			}
+			.rs-overlay1,.rs-overlay2{
+				width:100%
+			}
+			.rs-overlay,.rs-overlay1,.rs-overlay2{
+				position:absolute;
+				background-color:#fff;
+				z-index:3;
+				top:0;
+				height:50%
+			}
+			.rs-bar{
+				position:absolute;
+				height:0;
+				z-index:10
+			}
+			.rs-bar.rs-rounded{
+				z-index:5
+			}
+			.rs-bar .rs-seperator{
+				height:0;
+				display:block;
+				float:left
+			}
+			.rs-bar:not(.rs-rounded) .rs-seperator{
+				border-left:none;
+				border-right:none
+			}
+			.rs-bar.rs-start .rs-seperator{
+				border-top:none
+			}
+			.rs-bar.rs-end .rs-seperator{
+				border-bottom:none
+			}
+			.rs-bar.rs-start.rs-rounded .rs-seperator{
+				border-radius:0 0 1000px 1000px
+			}
+			.rs-bar.rs-end.rs-rounded .rs-seperator{
+				border-radius:1000px 1000px 0 0
+			}
+			.full .rs-bar,.half .rs-bar{
+				width:50%
+			}
+			.half.left .rs-bar,.half.right .rs-bar,.quarter .rs-bar{
+				width:100%
+			}
+			.full .rs-bar,.half.left .rs-bar,.half.right .rs-bar{
+				top:50%
+			}
+			.bottom .rs-bar{
+				top:0
+			}
+			.half.right .rs-bar,.quarter.right .rs-bar{
+				right:100%
+			}
+			.rs-handle.rs-move{
+				cursor:move
+			}
+			.rs-readonly .rs-handle.rs-move{
+				cursor:default
+			}
+			.rs-path{
+				display:block;
+				height:100%;
+				width:100%
+			}
+			.rs-split .rs-path{
+				-webkit-border-radius:1000px 1000px 0 0;
+				border-radius:1000px 1000px 0 0;
+				overflow:hidden;
+				height:50%;
+				position:absolute;
+				top:0;
+				z-index:2
+			}
+			.rs-tooltip{
+				position:absolute;
+				cursor:default;
+				border:1px solid transparent;
+				z-index:10
+			}
+			.full .rs-tooltip{
+				top:50%;
+				left:50%
+			}
+			.bottom .rs-tooltip{
+				top:0
+			}
+			.top .rs-tooltip{
+				bottom:0
+			}
+			.right .rs-tooltip{
+				left:0
+			}
+			.left .rs-tooltip{
+				right:0
+			}
+			.half.top .rs-tooltip,.half.bottom .rs-tooltip{
+				left:50%
+			}
+			.half.left .rs-tooltip,.half.right .rs-tooltip{
+				top:50%
+			}
+			.rs-tooltip .rs-input{
+				outline:0 none;
+				border:none;
+				background:transparent
+			}
+			.rs-tooltip-text{
+				font-family:verdana;
+				font-size:13px;
+				border-radius:7px;
+				text-align:center
+			}
+			.rs-tooltip.edit,.rs-tooltip .rs-input{
+				padding:5px 8px
+			}
+			.rs-tooltip.hover,.rs-tooltip.edit:hover{
+				border:1px solid #aaa;
+				cursor:pointer
+			}
+			.rs-readonly .rs-tooltip.edit:hover{
+				border-color:transparent;
+				cursor:default
+			}
+			.rs-handle{
+				border-radius:1000px;
+				outline:0 none;
+				float:left
+			}
+			.rs-handle.rs-handle-square{
+				border-radius:0
+			}
+			.rs-handle-dot{
+				border:1px solid #aaa;
+				padding:6px
+			}
+			.rs-handle-dot:after{
+				display:block;
+				content:"";
+				border:1px solid #aaa;
+				height:100%;
+				width:100%;
+				border-radius:100%
+			}
+			.rs-seperator{
+				border:1px solid #aaa
+			}
+			.rs-border{
+				border:1px solid #aaa
+			}
+			.rs-path-color{
+				background-color:#fff
+			}
+			.rs-range-color{
+				background-color:#54bbe0
+			}
+			.rs-bg-color{
+				background-color:#fff
+			}
+			.rs-handle{
+				background-color:#838383
+			}
+			.rs-handle-dot{
+				background-color:#fff
+			}
+			.rs-handle-dot:after{
+				background-color:#838383
 			}
 			#stage {
 			  margin: 2em auto 1em 50%;
@@ -74,30 +343,40 @@
 			h1 span {
 				font-size: 0.6em;
 			}
+			settings {
+			}
 		</style>
 	</head>
 	<body>
 		<div id="stage">
-		<div id="rotator" style="-webkit-animation-name: rotator;">
-		<a href="icons\audio.jpg"><img src="icons\audio.jpg" width="140"></a>
-		<a href="icons\chrome.png"><img src="icons\chrome.png" width="140"></a>
-		<a href="icons\find.jpg"><img src="icons\find.jpg" width="140"></a>
-		<a href="icons\itunes.png"><img src="icons\itunes.png" width="140"></a>
-		<a href="icons\powerpoint.png"><img src="icons\powerpoint.png" width="140"></a>
-		<a href="icons\settings.png"><img src="icons\settings.png" width="140"></a>
-		<a href="icons\spotify.png"><img src="icons\spotify.png" width="140"></a>
-		<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
+			<div id="rotator" style="-webkit-animation-name: rotator;">
+				<a href="icons\audio.jpg"><img src="icons\audio.jpg" width="140"></a>
+				<a href="icons\chrome.png"><img src="icons\chrome.png" width="140"></a>
+				<a href="icons\find.jpg"><img src="icons\find.jpg" width="140"></a>
+				<a href="icons\itunes.png"><img src="icons\itunes.png" width="140"></a>
+				<a href="icons\powerpoint.png"><img src="icons\powerpoint.png" width="140"></a>
+				<a href="icons\settings.png"><img src="icons\settings.png" width="140"></a>
+				<a href="icons\spotify.png"><img src="icons\spotify.png" width="140"></a>
+				<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
+			</div>
 		</div>
-		</div>
-		<br>
-		<br>
 		<button id="test1">TRY</button>
-		<br>
-		<br>
 		<div id="slider">
 		</div>
-		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 		<div id="div1"></div>
+		<div id="settings">
+			<button id="settingsbutton"><img src="icons\settings.png" alt="Settings" width=50 height=50></img></button>
+			<SELECT NAME="colour" id="dropdown">
+			<OPTION SELECTED VALUE="">Select...</OPTION>
+			<OPTION value="Red">Red</OPTION>
+			<OPTION value="Blue">Blue</OPTION>
+			<OPTION value="Yellow">Yellow</OPTION>
+			<OPTION value="Orange">Orange</OPTION>
+			<OPTION value="Green">Green</OPTION>
+			<OPTION value="Purple">Purple</OPTION>
+			</SELECT>
+			<button id="verifycolour"><h4>Ok</h4></button>
+		</div>
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function() {
 				var rotateComplete = function() {
@@ -129,9 +408,12 @@
 				current.roundSlider({
 					value: 5,
 				});
-				var slidervalue = String(current.roundSlider.value);
-				//alert(current.roundSlider.style.value);
-
+				
+				$("#slider").on("click", function() {
+					value = this.value;
+					console.log(value);
+				});
+				
 				var target = document.getElementById("rotator");
 				var arr = target.getElementsByTagName("a");
 
@@ -145,6 +427,48 @@
 					setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 1000);
 				} , false);
 				
+				var sbutton = document.getElementById("settingsbutton");
+				var bodytag = document.getElementById("body");
+				sbutton.addEventListener("click", function () {
+					if (document.body.style.backgroundColor == "white"){
+						document.body.style.backgroundColor = "black";
+						$('.rs-bg-color').css('background-color', '#000000');
+					}
+					else {
+						document.body.style.backgroundColor = "white";
+						$('.rs-bg-color').css('background-color', '#ffffff');
+					}
+				} , false);
+				var verify = document.getElementById("verifycolour");
+				verify.addEventListener("click", function () {
+					var drop = document.getElementById("dropdown");
+					var choice = String(drop.options[ drop.selectedIndex ].value)
+					if (drop.value == "Red") {
+						document.body.style.backgroundColor = "#dea5a4";
+						$('.rs-bg-color').css('background-color', '#dea5a4');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Blue") {
+						document.body.style.backgroundColor = "#779ecb";
+						$('.rs-bg-color').css('background-color', '#779ecb');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Yellow") {
+						document.body.style.backgroundColor = "#fdfd96";
+						$('.rs-bg-color').css('background-color', '#fdfd96');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Orange") {
+						document.body.style.backgroundColor = "#ffb347";
+						$('.rs-bg-color').css('background-color', '#ffb347');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Green") {
+						document.body.style.backgroundColor = "#77dd77";
+						$('.rs-bg-color').css('background-color', '#77dd77');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Purple") {
+						document.body.style.backgroundColor = "#b39eb5";
+						$('.rs-bg-color').css('background-color', '#b39eb5');
+					}
+				} , false);
+				//"http://wall.wallrage.com/wp-content/uploads/4k-Landscape-HD-Desktop-Background-Wallpapers.jpg";
 			</script>
 		</div>
 	</body>
