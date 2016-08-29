@@ -50,7 +50,11 @@ public class MainActivity extends AppCompatActivity {
         view.getSettings().setJavaScriptEnabled(true);
         view.setWebViewClient(new MyWebViewClient());
         view.addJavascriptInterface(new webViewInterface(this), "MainActivityInterface"); // MainActivityInterface is what needs to be called in the javascript when passing a var value.
-        String url = "file:///android_asset/web/testpage.html";
+
+
+        //String url = "file:///android_asset/web/testpage.html";
+        String url = "file:///android_asset/web/Small.html";
+
         view.loadUrl(url);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
