@@ -371,142 +371,90 @@
 				/* bring your own prefixes */
 				transform: translate(-50%, -50%);
 			}
-			#settingsdiv {
-				margin-left: 100%;
-				transform: translate(-50px, 0);
-			}
-			#menu {
-				position: fixed;
-				left: 50%;
-				transform: translate(-50%, 0);
-				background-color: #fff;
-				padding: 10px
 		</style>
 	</head>
 	<body>
 		<div id="stage">
 			<div id="rotator" style="-webkit-animation-name: rotator;">
-				<a href="icons\audio.jpg"><img src="icons\audio.jpg" width="140"></a>
-				<a href="icons\chrome.png"><img src="icons\chrome.png" width="140"></a>
-				<a href="icons\find.jpg"><img src="icons\find.jpg" width="140"></a>
-				<a href="icons\itunes.png"><img src="icons\itunes.png" width="140"></a>
-				<a href="icons\powerpoint.png"><img src="icons\powerpoint.png" width="140"></a>
-				<a href="icons\settings.png"><img src="icons\settings.png" width="140"></a>
-				<a href="icons\spotify.png"><img src="icons\spotify.png" width="140"></a>
-				<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
+				<a href="http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iMac-icon.png"><img src="http://icons.iconarchive.com/icons/designbolts/free-multimedia/1024/iMac-icon.png" width="140"></a>
+				<a href="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png"><img src="http://icons.iconarchive.com/icons/paomedia/small-n-flat/1024/sign-check-icon.png" width="140"></a>
+				<a href="http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/256/Home-icon.png"><img src="http://icons.iconarchive.com/icons/graphicloads/colorful-long-shadow/256/Home-icon.png" width="140"></a>
+				<a href="http://m.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png"><img src="http://m.hiapphere.com/data/icon/201409/HiAppHere_com_kov.theme.lumos.png" width="140"></a>
+				<a href="https://lh5.ggpht.com/8h4a-QzLFHu3pxFZ-Np8AyyUCq1G97T1_7F3ScjbBaxb6wGSdoCLHanFtnQa9kbg0d4=w300"><img src="https://lh5.ggpht.com/8h4a-QzLFHu3pxFZ-Np8AyyUCq1G97T1_7F3ScjbBaxb6wGSdoCLHanFtnQa9kbg0d4=w300" width="140"></a>
+				<a href="http://www.iconarchive.com/download/i85616/graphicloads/100-flat/settings-3.ico"><img src="http://www.iconarchive.com/download/i85616/graphicloads/100-flat/settings-3.ico" width="140"></a>
+				<a href="https://lh3.googleusercontent.com/vh0GZ_4EZPCkzP5OF1soGNBk-WWAd1vjeRIO84qqahf7SXYXogRK3xyP1_JKaOiUhKM=w300"><img src="https://lh3.googleusercontent.com/vh0GZ_4EZPCkzP5OF1soGNBk-WWAd1vjeRIO84qqahf7SXYXogRK3xyP1_JKaOiUhKM=w300" width="140"></a>
+				<a href="https://pixabay.com/static/uploads/photo/2015/09/12/17/54/icon-937080_960_720.png"><img src="https://pixabay.com/static/uploads/photo/2015/09/12/17/54/icon-937080_960_720.png" width="140"></a>
 			</div>
 		</div>
-		<!-- <div id="R">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
-			<circle cx="50" cy="50" r="30" stroke-dasharray="0.628" stroke-width="8" fill="none" stroke="white"></circle>
-			</svg>
-		</div> -->
 		<div id="slider">
 		</div>
-		<div id="settingsdiv">
-			<button id="settingsbutton"><img src="icons\settings.png" alt="Settings" width=35></img></button>
-		</div>
-		<div id="menu" style="visibility: hidden">
-			<center><h1>Menu</h1></center>
-			<br><br>
-			<center><p>Hello!</p></center>
-			<br><br>
-			<center><p>Here you can customise the launcher</p></center>
-			<br><br>
-			<center><p>Have different menu items here</p></center>
-			<br><br>
-			<center><p>Once you're done, click the settings button again and all this will disappear</p></center>
-			<br><br>
-		</div>
-			<script type="text/javascript">
-				document.addEventListener("DOMContentLoaded", function() {
-				var rotateComplete = function() {
-					target.style.webkitAnimationName = "";
-					target.insertBefore(arr[arr.length-1], arr[0]);
-					setTimeout(function(el) {
-					el.style.webkitAnimationName = "rotator";
-					}, 0, target);
-				  };
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function() {
+			var rotateComplete = function() {
+				target.style.webkitAnimationName = "";
+				target.insertBefore(arr[arr.length-1], arr[0]);
+				setTimeout(function(el) {
+				el.style.webkitAnimationName = "rotator";
+				}, 0, target);
+			  };
 
-				  var target = document.getElementById("rotator");
-				  var arr = target.getElementsByTagName("a");
+			  var target = document.getElementById("rotator");
+			  var arr = target.getElementsByTagName("a");
 
-				  target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+			  target.addEventListener("webkitAnimationEnd", rotateComplete, false);
 
-				}, false);
-				var rotateComplete = function() {
-				  with(target.style) {
-					webkitAnimationName = MozAnimationName = msAnimationName = "";
-				  }
-				  target.insertBefore(arr[arr.length-1], arr[0]);
-				  setTimeout(function(el) {
-					with(el.style) {
-					  webkitAnimationName = MozAnimationName = msAnimationName = "rotator";
-					}
-				  }, 0, target);
-				};
-				var current = $("#slider")
-				current.roundSlider({
-					value: 0,
-					showTooltip: false,
-					max: 100,
-					radius: 200,
-					handleShape: "dot"
-				});
-				
-				var target = document.getElementById("rotator");
-				var arr = target.getElementsByTagName("a");
+			}, false);
+			var rotateComplete = function() {
+			  with(target.style) {
+				webkitAnimationName = MozAnimationName = msAnimationName = "";
+			  }
+			  target.insertBefore(arr[arr.length-1], arr[0]);
+			  setTimeout(function(el) {
+				with(el.style) {
+				  webkitAnimationName = MozAnimationName = msAnimationName = "rotator";
+				}
+			  }, 0, target);
+			};
+			var current = $("#slider")
+			current.roundSlider({
+				value: 0,
+				showTooltip: false,
+				max: 100,
+				radius: 200,
+				handleShape: "dot"
+			});
 
-				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
-				target.addEventListener("animationend", rotateComplete, false);
-				target.addEventListener("MSAnimationEnd", rotateComplete, false);
+			var target = document.getElementById("rotator");
+			var arr = target.getElementsByTagName("a");
 
-				var sbutton = document.getElementById("settingsbutton");
-				sbutton.addEventListener("click", function () {
-					if (menu.style.visibility == "hidden"){
-						$('#menu').css('visibility', 'visible');
-					}
-					else {
-						$('#menu').css('visibility', 'hidden');
-					}
-				} , false);
-				
-				/*function loop() {
-					var value1 = $("#slider").roundSlider("getValue");
-					setTimeout(function(){
-						var value2 = $("#slider").roundSlider("getValue");
+			target.addEventListener("webkitAnimationEnd", rotateComplete, false);
+			target.addEventListener("animationend", rotateComplete, false);
+			target.addEventListener("MSAnimationEnd", rotateComplete, false);
+
+			function loop() {
+				var value1 = $("#slider").roundSlider("getValue");
+				setTimeout(function(){
+					var value2 = $("#slider").roundSlider("getValue");
+					if (value2 > value1) {
+						$('#rotator').css('-webkit-animation-name', 'rotatorRight');
 						for (i = value1; i < value2; i++) {
 							rotator.style.webkitAnimationPlayState = "running";
 							setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
 						};
-						loop()
-				}, 100);}
-				loop()*/
-				function loop() {
-					var value1 = $("#slider").roundSlider("getValue");
-					setTimeout(function(){
-						var value2 = $("#slider").roundSlider("getValue");
-						if (value2 > value1) {
-							$('#rotator').css('-webkit-animation-name', 'rotatorRight');
-							for (i = value1; i < value2; i++) {
+					}
+					else {
+						if (value1 > value2) {
+							$('#rotator').css('-webkit-animation-name', 'rotatorLeft');
+							for (i = value2; i < value1; i++) {
 								rotator.style.webkitAnimationPlayState = "running";
 								setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
-							};
-						}
-						else {
-							if (value1 > value2) {
-								$('#rotator').css('-webkit-animation-name', 'rotatorLeft');
-								for (i = value2; i < value1; i++) {
-									rotator.style.webkitAnimationPlayState = "running";
-									setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
-							};
-							};
 						};
-						loop()
-				}, 100);}
-				loop()
-				//"http://wall.wallrage.com/wp-content/uploads/4k-Landscape-HD-Desktop-Background-Wallpapers.jpg";
-			</script>
-		</div>
+						};
+					};
+					loop()
+			}, 100);}
+			loop()
+			//"http://wall.wallrage.com/wp-content/uploads/4k-Landscape-HD-Desktop-Background-Wallpapers.jpg";
+		</script>
 	</body>
 </html>

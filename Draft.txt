@@ -22,7 +22,7 @@
 			}
 			.rs-container{
 				position:absolute;
-				left: 100%;
+				left: 75%;
 				top: 50%;
 				transform: translate(0%, -50%);
 			}
@@ -43,7 +43,6 @@
 				-ms-transform-origin:100% 50%;
 				-o-transform-origin:100% 50%;
 				transform-origin:100% 50%
-				<!-- Circle Div -->
 			}
 			.rs-control .rs-split .rs-path,.rs-control .rs-overlay1,.rs-control .rs-overlay2{
 				-webkit-transform-origin:50% 100%;
@@ -77,7 +76,7 @@
 				height:100%;
 				width:100%;
 				position:relative;
-				overflow:hidden;
+				overflow:hidden
 			}
 			.quarter div.rs-block{
 				height:200%;
@@ -93,10 +92,10 @@
 			}
 			.bottom>.rs-inner-container>.rs-block{
 				top:auto;
-				bottom:0;
+				bottom:0
 			}
 			.right .rs-inner-container>.rs-block{
-				right:0;
+				right:0
 			}
 			div.rs-block{
 				-webkit-border-radius:100%;
@@ -117,7 +116,7 @@
 				display:block;
 				height:100%;
 				width:100%;
-				position:relative;
+				position:relative
 			}
 			.rs-overlay{
 				width:50%
@@ -239,7 +238,7 @@
 				padding:5px 8px
 			}
 			.rs-tooltip.hover,.rs-tooltip.edit:hover{
-				border:1px solid #fff;
+				border:1px solid #aaa;
 				cursor:pointer
 			} 
 			.rs-readonly .rs-tooltip.edit:hover{
@@ -249,55 +248,52 @@
 			.rs-handle{
 				border-radius:1000px;
 				outline:0 none;
-				float:left;
-				<!-- Also Round circle thing -->
+				float:left
 			}
 			.rs-handle.rs-handle-square{
 				border-radius:0
 			}
 			.rs-handle-dot{
-				border:1px solid #fff;
+				border:1px solid #aaa;
 				padding:6px
 			}
 			.rs-handle-dot:after{
 				display:block;
 				content:"";
-				border:1px solid #fff;
+				border:1px solid #aaa;
 				height:100%;
 				width:100%;
 				border-radius:100%
 			}
 			.rs-seperator{
-				border:1px solid #fff
+				border:1px solid #aaa
 			}
 			.rs-border{
-				border:1px solid #fff
-			}
-			.rs-bg-color {
-				background-color: transparent;
+				border:1px solid #aaa
 			}
 			.rs-path-color{
-				background-color:transparent;
+				background-color:#fff
 			}
 			.rs-range-color{
 				background-color:#54bbe0
 			}
+			.rs-bg-color{
+				background-color: #fff;
+			}
 			.rs-handle{
-				background-color:#fff
+				background-color:#838383
 			}
 			.rs-handle-dot{
-				background-color:transparent
-			}
-			.rs-handle-dot:after{
 				background-color:#fff
 			}
+			.rs-handle-dot:after{
+				background-color:#838383
+			}
 			#stage {
-			  position: absolute;
+			  margin: 2em auto 1em 50%;
 			  height: 140px;
 			  -webkit-perspective: 1200px;
-			  -webkit-perspective-origin: 0, 50%;
-			  left: 30%;
-			  top: 39.5%;
+			  -webkit-perspective-origin: 0 50%;
 			}
 
 			#rotator a {
@@ -331,7 +327,12 @@
 			  -webkit-transform: rotateY(-60deg) translateZ(300px);
 			}
 			#rotator a:nth-of-type(n+7) { display: none; }
-			
+
+			@-webkit-keyframes rotator {
+			  from { -webkit-transform: rotateY(0deg);  }
+			  to   { -webkit-transform: rotateY(-30deg); }
+			}
+
 			#rotator {
 			  -webkit-transform-origin: 0 0;
 			  -webkit-transform-style: preserve-3d;
@@ -339,15 +340,6 @@
 			  -webkit-animation-duration: 0.1s;
 			  -webkit-animation-delay: 0s;
 			  -webkit-animation-play-state: paused;
-			  -webkit-animation-name: rotatorRight;
-			}
-			@-webkit-keyframes rotatorRight {
-			  from { -webkit-transform: rotateY(0deg);  }
-			  to   { -webkit-transform: rotateY(-30deg); }
-			}
-			@-webkit-keyframes rotatorLeft {
-			  from { -webkit-transform: rotateY(0deg);  }
-			  to   { -webkit-transform: rotateY(30deg); }
 			}
 			#rotator:hover {
 			  -webkit-animation-play-state: paused;
@@ -362,25 +354,8 @@
 			h1 span {
 				font-size: 0.6em;
 			}
-			#R {
-				min-height:36%;
-				min-width: 36%;
-				position: fixed;
-				top: 50.3%;
-				left: 75%;
-				/* bring your own prefixes */
-				transform: translate(-50%, -50%);
+			settings {
 			}
-			#settingsdiv {
-				margin-left: 100%;
-				transform: translate(-50px, 0);
-			}
-			#menu {
-				position: fixed;
-				left: 50%;
-				transform: translate(-50%, 0);
-				background-color: #fff;
-				padding: 10px
 		</style>
 	</head>
 	<body>
@@ -396,27 +371,22 @@
 				<a href="icons\word.png"><img src="icons\word.png" width="140"></a>
 			</div>
 		</div>
-		<!-- <div id="R">
-			<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink= "http://www.w3.org/1999/xlink" viewBox="0 0 100 100">
-			<circle cx="50" cy="50" r="30" stroke-dasharray="0.628" stroke-width="8" fill="none" stroke="white"></circle>
-			</svg>
-		</div> -->
 		<div id="slider">
 		</div>
-		<div id="settingsdiv">
-			<button id="settingsbutton"><img src="icons\settings.png" alt="Settings" width=35></img></button>
-		</div>
-		<div id="menu" style="visibility: hidden">
-			<center><h1>Menu</h1></center>
-			<br><br>
-			<center><p>Hello!</p></center>
-			<br><br>
-			<center><p>Here you can customise the launcher</p></center>
-			<br><br>
-			<center><p>Have different menu items here</p></center>
-			<br><br>
-			<center><p>Once you're done, click the settings button again and all this will disappear</p></center>
-			<br><br>
+  		<button id="test1">TRY</button>
+		<div id="div1"></div>
+ 		<div id="settings">
+			<button id="settingsbutton"><img src="icons\settings.png" alt="Settings" width=50 height=50></img></button>
+			<SELECT NAME="colour" id="dropdown">
+			<OPTION SELECTED VALUE="">Select...</OPTION>
+			<OPTION value="Red">Red</OPTION>
+			<OPTION value="Blue">Blue</OPTION>
+			<OPTION value="Yellow">Yellow</OPTION>
+			<OPTION value="Orange">Orange</OPTION>
+			<OPTION value="Green">Green</OPTION>
+			<OPTION value="Purple">Purple</OPTION>
+			</SELECT>
+			<button id="verifycolour"><h4>Ok</h4></button>
 		</div>
 			<script type="text/javascript">
 				document.addEventListener("DOMContentLoaded", function() {
@@ -450,9 +420,10 @@
 					value: 0,
 					showTooltip: false,
 					max: 100,
-					radius: 200,
-					handleShape: "dot"
 				});
+				//var middleback = document.getElementById('.rs-bg-color').style.backgroundColor;
+				//var docback = document.body.style.backgroundColor;
+				//middleback = docback
 				
 				var target = document.getElementById("rotator");
 				var arr = target.getElementsByTagName("a");
@@ -460,18 +431,13 @@
 				target.addEventListener("webkitAnimationEnd", rotateComplete, false);
 				target.addEventListener("animationend", rotateComplete, false);
 				target.addEventListener("MSAnimationEnd", rotateComplete, false);
-
-				var sbutton = document.getElementById("settingsbutton");
-				sbutton.addEventListener("click", function () {
-					if (menu.style.visibility == "hidden"){
-						$('#menu').css('visibility', 'visible');
-					}
-					else {
-						$('#menu').css('visibility', 'hidden');
-					}
-				} , false);
 				
-				/*function loop() {
+				var button1 = document.getElementById("test1");
+				button1.addEventListener("click", function () {
+					rotator.style.webkitAnimationPlayState = "running";
+					setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
+				} , false);
+				function loop() {
 					var value1 = $("#slider").roundSlider("getValue");
 					setTimeout(function(){
 						var value2 = $("#slider").roundSlider("getValue");
@@ -481,29 +447,47 @@
 						};
 						loop()
 				}, 100);}
-				loop()*/
-				function loop() {
-					var value1 = $("#slider").roundSlider("getValue");
-					setTimeout(function(){
-						var value2 = $("#slider").roundSlider("getValue");
-						if (value2 > value1) {
-							$('#rotator').css('-webkit-animation-name', 'rotatorRight');
-							for (i = value1; i < value2; i++) {
-								rotator.style.webkitAnimationPlayState = "running";
-								setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
-							};
-						}
-						else {
-							if (value1 > value2) {
-								$('#rotator').css('-webkit-animation-name', 'rotatorLeft');
-								for (i = value2; i < value1; i++) {
-									rotator.style.webkitAnimationPlayState = "running";
-									setTimeout(function(){rotator.style.webkitAnimationPlayState = "paused";}, 100);
-							};
-							};
-						};
-						loop()
-				}, 100);}
+				var sbutton = document.getElementById("settingsbutton");
+				var bodytag = document.getElementById("body");
+				sbutton.addEventListener("click", function () {
+					if (document.body.style.backgroundColor == "white"){
+						document.body.style.backgroundColor = "black";
+						//$('.rs-bg-color').css('background-color', '#000000');
+					}
+					else {
+						document.body.style.backgroundColor = "white";
+						//$('.rs-bg-color').css('background-color', '#ffffff');
+					}
+				} , false);
+				var verify = document.getElementById("verifycolour");
+				verify.addEventListener("click", function () {
+					var drop = document.getElementById("dropdown");
+					var choice = String(drop.options[ drop.selectedIndex ].value)
+					if (drop.value == "Red") {
+						document.body.style.backgroundColor = "#dea5a4";
+						//$('.rs-bg-color').css('background-color', '#dea5a4');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Blue") {
+						document.body.style.backgroundColor = "#779ecb";
+						//$('.rs-bg-color').css('background-color', '#779ecb');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Yellow") {
+						document.body.style.backgroundColor = "#fdfd96";
+						//$('.rs-bg-color').css('background-color', '#fdfd96');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Orange") {
+						document.body.style.backgroundColor = "#ffb347";
+						//$('.rs-bg-color').css('background-color', '#ffb347');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Green") {
+						document.body.style.backgroundColor = "#77dd77";
+						//$('.rs-bg-color').css('background-color', '#77dd77');
+					}
+					else if (drop.options[ drop.selectedIndex ].value == "Purple") {
+						document.body.style.backgroundColor = "#b39eb5";
+						//$('.rs-bg-color').css('background-color', '#b39eb5');
+					};
+				} , false);
 				loop()
 				//"http://wall.wallrage.com/wp-content/uploads/4k-Landscape-HD-Desktop-Background-Wallpapers.jpg";
 			</script>
